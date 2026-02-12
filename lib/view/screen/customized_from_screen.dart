@@ -108,8 +108,13 @@ class _CustomizedFeedbackFormState extends State<CustomizedFeedbackForm> {
                             ...selectedForm.feedbackType?.asMap().entries.map((entry) {
                                   final e = entry.value;
                                   return Column(
+                                    key: ValueKey(e.id ?? entry.key), // Adding key to the top-level element of the item
                                     children: [
-                                      FeedbackRatingConfigCard(ratingFields: e, formId: selectedForm.formId),
+                                      FeedbackRatingConfigCard(
+                                        key: ValueKey(e.id ?? "card_${entry.key}"),
+                                        ratingFields: e,
+                                        formId: selectedForm.formId,
+                                      ),
                                       const SizedBox(height: 20),
                                     ],
                                   );
@@ -262,6 +267,7 @@ class _CustomizedFeedbackFormState extends State<CustomizedFeedbackForm> {
                                       final e = entry.value;
 
                                       return Visibility(
+                                        key: ValueKey("preview_${e.id ?? entry.key}"),
                                         visible: e.status == 1,
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -292,7 +298,7 @@ class _CustomizedFeedbackFormState extends State<CustomizedFeedbackForm> {
                                                     index: entry.key,
                                                     ratingType: e.ratingType ?? 1,
                                                     rating: e.ratingValue,
-                                                    image: e.image,
+                                                    image: e.ratingImage,
                                                     customLabels: e.feedbackOption?.map((opt) => opt.optionName ?? "").toList(),
                                                     onRatingChanged: (value) {
                                                       final updatedFeedbackType = selectedForm.feedbackType!.map((item) {

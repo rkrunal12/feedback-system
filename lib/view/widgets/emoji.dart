@@ -642,7 +642,7 @@ class _OptimizedImage extends StatelessWidget {
 
     final imageProvider = (image!.startsWith("data:") || image!.length > 1000)
         ? MemoryImage(base64Decode(image!.split(',').last))
-        : FileImage(File(image!)) as ImageProvider;
+        : (image!.startsWith("http") ? NetworkImage(image!) : FileImage(File(image!))) as ImageProvider;
 
     return Opacity(
       opacity: isSelected ? 1.0 : 0.4,

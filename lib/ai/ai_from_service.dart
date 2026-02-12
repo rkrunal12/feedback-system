@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import '../model/feedback_form_model.dart';
 
 class AiFormService {
-  final String apiKey = "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";
+  final String apiKey = "AABBCC";
   final String apiUrl = "https://api.groq.com/openai/v1/chat/completions";
 
   Future<List<FeedbackType>> generateAiForm(String topic) async {

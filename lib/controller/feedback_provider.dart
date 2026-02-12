@@ -543,7 +543,7 @@ class FeedbackProvider with ChangeNotifier {
     _isAdding = true;
     notifyListeners();
 
-    const String apiKey = "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";
+    const String apiKey = "BBB";
     const String apiUrl = "https://api.groq.com/openai/v1/chat/completions";
 
     final String systemPrompt =
